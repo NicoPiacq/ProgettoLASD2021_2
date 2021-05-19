@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1621431615 source:c:\users\nicola\desktop\unina\labasd\progetto 2 - i-eats spedizioni\i-eats\main.c
+	"HeaderConfigurazione.h"
+	"HeaderGestioneDati.h"
+	"HeaderInterfaccia.h"
+
+1621431725 c:\users\nicola\desktop\unina\labasd\progetto 2 - i-eats spedizioni\i-eats\headerconfigurazione.h
+	"stdlib.h"
+	"stdio.h"
+	"string.h"
+	"time.h"
+	"stdbool.h"
+	"windows.h"
+	"conio.h"
+
+1621436322 source:c:\users\nicola\desktop\unina\labasd\progetto 2 - i-eats spedizioni\i-eats\funzioniregistrazione.c
+	"HeaderGestioneDati.h"
+	"HeaderInterfaccia.h"
+
+1621436183 c:\users\nicola\desktop\unina\labasd\progetto 2 - i-eats spedizioni\i-eats\headergestionedati.h
+	"HeaderConfigurazione.h"
+
+1621348278 source:c:\users\nicola\desktop\unina\labasd\progetto 2 - i-eats spedizioni\i-eats\funzioniconfigurazione.c
+	"HeaderConfigurazione.h"
+
+1621428910 source:c:\users\nicola\desktop\unina\labasd\progetto 2 - i-eats spedizioni\i-eats\funzioniinterfaccia.c
+	"HeaderInterfaccia.h"
+
+1621428787 c:\users\nicola\desktop\unina\labasd\progetto 2 - i-eats spedizioni\i-eats\headerinterfaccia.h
+	"HeaderConfigurazione.h"
+
