@@ -2,43 +2,61 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="FunzioniRegistrazione.c" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="FunzioniConfigurazione.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2615" topLine="42" />
-		</Cursor>
-		<Folding>
-			<Collapse line="90" />
-			<Collapse line="102" />
-		</Folding>
-	</File>
-	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1512" topLine="0" />
+			<Cursor1 position="294" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="HeaderInterfaccia.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="FunzioniInterfaccia.c" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="243" topLine="0" />
+			<Cursor1 position="907" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="FunzioniInterfaccia.c" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+	<File name="HeaderGestioneDati.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="931" topLine="0" />
+			<Cursor1 position="1171" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="HeaderGestioneDati.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="HeaderInterfaccia.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="967" topLine="3" />
+			<Cursor1 position="553" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="FunzioniConfigurazione.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="HeaderVeicoli.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="76" topLine="0" />
+			<Cursor1 position="40" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="FunzioniVeicoli.c" open="1" top="1" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="556" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="HeaderConfigurazione.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="139" topLine="0" />
+			<Cursor1 position="637" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1508" topLine="8" />
+		</Cursor>
+	</File>
+	<File name="FunzioniRegistrazione.c" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5930" topLine="14" />
+		</Cursor>
+		<Folding>
+			<Collapse line="5" />
+			<Collapse line="90" />
+			<Collapse line="127" />
+			<Collapse line="141" />
+			<Collapse line="162" />
+		</Folding>
+	</File>
+	<File name="FunzioniMenu.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1657" topLine="5" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

@@ -10,25 +10,22 @@
 
 #include "HeaderConfigurazione.h"
 
-typedef struct utente {
+typedef struct autista {
 
     char nomeUtente[UTENTE_NOME_DIM];
-    char idVeicolo[VEICOLO_ID_DIM];
     char nomeVeicolo[VEICOLO_NOME_DIM];
+    int pesoVeicolo;
     int pesoCarico;
 
-} Driver;
+} Autista;
 
 // FUNZIONI PER GESTIONE REGISTRAZIONE E LOGIN
 
 // Funzione che raccoglie le informazioni del nuovo utente (nome e password) prima di scrivere su file
 void RegistrazioneNuovoUtente();
 
-// Verifica se la password rispetta i criteri di sicurezza stabiliti
-bool VerificaPassword(char[]);
-
-// Verifica se il nome ha almeno 3 caratteri e non oltre 15 caratteri
-bool VerificaNome(char[]);
+// Verifica se una stringa rispetta i criteri prestabiliti (4 modalità: controllo nome, password, nome veicolo e peso veicolo)
+bool VerificaCampo(char[], int);
 
 // Scrive sul file della lista utenti il nuovo utente
 void ScriviSuFileRegistrazione(int, char[], char[], char[], int);
@@ -40,24 +37,7 @@ int LeggiUltimoIDRegistrato();
 void AggiornaIDFileConfigurazione(int);
 
 // Funzione per accedere al software
-void AccessoUtente();
+Autista AccessoUtente();
 
-///////////////////////////////////////////////////////////////////////////////////////
-
-// FUNZIONE PER ASSEGNAZIONE VEICOLI
-
-// Assegna il veicolo all'utente associandolo all'ID utente e scrive su file
-void AssegnaVeicoloAUtente(int);
-
-// Carica il veicolo con il prodotto scelto dal driver
-void CaricaVeicoloConProdotto();
-
-///////////////////////////////////////////////////////////////////////////////////////
-
-// FUNZIONE PER GESTIONE PRODOTTI
-
-// Prepara una nuova lista di prodotti prima di accedere al programma
-void AggiornaListaProdottiAvvio();
-
-// Stampa i prodotti disponibili
-void StampaProdottiDisponibili();
+// Funzione per mostrare il menu principale
+void MostraMenuPrincipale(Autista utente);

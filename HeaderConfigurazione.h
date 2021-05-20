@@ -10,7 +10,6 @@
 
 // DEFINIZIONI PERCORSI FILE
 #define FILE_LISTAUTENTI    "Dati/ListaUtenti.txt"
-#define FILE_LISTAVEICOLI   "Dati/ListaVeicoli.txt"
 #define FILE_LISTAPRODOTTI  "Dati/ListaProdotti.txt"
 #define FILE_CONF           "Dati/Configurazione.txt"
 
@@ -20,9 +19,9 @@
 #define UTENTE_PSW_DIM          11
 #define UTENTE_NOMECONID_DIM    21
 
-// DATI VEICOLI
+// DATI VEICOLI E PRODOTTI
 #define VEICOLO_NOME_DIM        9
-#define VEICOLO_ID_DIM          3
+#define PRODOTTO_NOME_DIM       12
 
 // DATI SOFTWARE
 #define ESC                     27
@@ -30,3 +29,5 @@
 
 
 void ControllaFile(FILE *fileCheck, char[]);
+bool ControllaFileBool(FILE *fileCheck);
+bool ControllaAvvio();

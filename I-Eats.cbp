@@ -25,12 +25,19 @@
 		<Unit filename="FunzioniInterfaccia.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="FunzioniMenu.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="FunzioniRegistrazione.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="FunzioniVeicoli.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="HeaderConfigurazione.h" />
 		<Unit filename="HeaderGestioneDati.h" />
 		<Unit filename="HeaderInterfaccia.h" />
+		<Unit filename="HeaderVeicoli.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

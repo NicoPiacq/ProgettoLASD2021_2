@@ -1,3 +1,6 @@
 Nicola-1000 ASDAS Ypsilon 150
 Alessio-1001 prova3 Ypsilon 1125
 Alessio-1002 Ciao Ypsilon 1230
+Michael-1003 12345678 IVECO 3500
+Pinco-1005 Pallino dada 4000
+Carlo-1006 Harry123 Ford 2500

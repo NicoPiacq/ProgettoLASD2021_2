@@ -15,6 +15,11 @@
 
 int main()
 {
+    ImpostaTitoloConsole("I-Eats");
+
+    if(ControllaAvvio() == false) {
+        MostraErrore("main");
+    }
 
     int opzione = 0;
 
@@ -28,15 +33,15 @@ int main()
         printf("\t\tSono disponibili due opzioni in questo menu:");
         printf("\n\n\t\t1. Accesso al software\n\t\t2. Registrazione nuovo utente");
 
-        printf(CONSOLE_COLORE_ROSSO "\n\n\t\t3. Esci dal programma" CONSOLE_COLORE_BASE);
+        printf("\n\n\t\t3. Esci dal programma");
 
-        printf("\n\n\t\tScegliere un'opzione: ");
+        printf("\n\n\n\t\tScegliere un'opzione: ");
         scanf("%d",&opzione);
 
 
         switch(opzione) {
             case 1: {
-                AccessoUtente();
+                MostraMenuPrincipale(AccessoUtente());
                 break;
             }
             case 2: {
@@ -49,7 +54,7 @@ int main()
                 GeneraCampoUIVuoto(5);
                 MostraLogo(" ");
 
-                printf("\n\n\n\t\t\tArrivederci! :-)\n\n");
+                printf(CONSOLE_COLORE_VERDE "\n\n\n\t\t\t\t\tArrivederci! :-)\n\n" CONSOLE_COLORE_BASE);
                 Sleep(2000);
                 return 0;
             }
