@@ -1,8 +1,9 @@
-// SORGENTE SOLO PER LA DEFINIZIONE DELLE FUNZIONI DEDICATE AL LOGIN E PASSWORD
+// SORGENTE SOLO PER LA DEFINIZIONE DELLE StampaPercorsoZIONI DEDICATE AL LOGIN E PASSWORD
+#include "HeaderConfigurazione.h"
 #include "HeaderGestioneDati.h"
 #include "HeaderInterfaccia.h"
 
-// Funzione per registrare un nuovo utente nel programma
+// StampaPercorsozione per registrare un nuovo utente nel programma
 void RegistrazioneNuovoUtente() {
 
     system("cls");
@@ -25,9 +26,9 @@ void RegistrazioneNuovoUtente() {
         GeneraCampoUIVuoto(5);
         MostraLogo("Registrazione nuovo utente (PASSO 1/2)");
 
-        printf("\t\tBenvenuto nella pagina di registrazione utente!\n");
-        printf("\t\tAdesso le verranno chieste un paio di informazioni da inserire qui.");
-        printf("\n\n\t\tInserire il Nome: ");
+        printf("\tBenvenuto nella pagina di registrazione utente!\n");
+        printf("\tAdesso le verranno chieste un paio di informazioni da inserire qui.");
+        printf("\n\n\tInserire il Nome: ");
         scanf("%s", nomeUtente);
 
         nomeOk = VerificaCampo(nomeUtente, 0);
@@ -36,7 +37,7 @@ void RegistrazioneNuovoUtente() {
             continue;
         }
 
-        printf("\n\t\tInserire la password (min 4 - max 10 caratteri): ");
+        printf("\n\tInserire la password (min 4 - max 10 caratteri): ");
         scanf("%s", passwordUtente);
 
         passwordOk = VerificaCampo(passwordUtente, 1);
@@ -53,11 +54,11 @@ void RegistrazioneNuovoUtente() {
         GeneraCampoUIVuoto(5);
         MostraLogo("Registrazione nuovo utente (PASSO 2/2)");
 
-        printf("\t\tIn questo passo devi inserire i dati del veicolo.\n\n\n");
-        printf("\t\tInserisci il nome del veicolo (max 8 caratteri): ");
+        printf("\tIn questo passo devi inserire i dati del veicolo.\n\n\n");
+        printf("\tInserisci il nome del veicolo (max 8 caratteri): ");
         scanf("%s", nomeVeicolo);
 
-        printf("\n\t\tInserisci il peso del veicolo in Kg: ");
+        printf("\n\tInserisci il peso del veicolo in Kg: ");
         scanf("%d", &pesoVeicolo);
 
         // Scriviamo su file i dati ottenuti
@@ -70,13 +71,13 @@ void RegistrazioneNuovoUtente() {
         GeneraCampoUIVuoto(5);
         MostraLogo("");
 
-        // Notifichiamo l'utente che la registrazione è terminata e può uscire dalla funzione
-        printf(CONSOLE_COLORE_VERDE "\t\tRegistrazione terminata con successo!\n\n\t\t" CONSOLE_COLORE_BASE);
-        printf("\n\t\tI tuoi dati sono:\n\n");
-        printf("\t\tNome: %s-%04d\tPassword: %s\n", nomeUtente, ultimoID, passwordUtente);
-        printf("\t\tVeicolo: %s\t\tPeso: %d", nomeVeicolo, pesoVeicolo);
+        // Notifichiamo l'utente che la registrazione è terminata e può uscire dalla StampaPercorsozione
+        printf(CONSOLE_COLORE_VERDE "\tRegistrazione terminata con successo!\n\n\t\t" CONSOLE_COLORE_BASE);
+        printf("\n\tI tuoi dati sono:\n\n");
+        printf("\tNome: %s-%04d\tPassword: %s\n", nomeUtente, ultimoID, passwordUtente);
+        printf("\tVeicolo: %s\tPeso: %d", nomeVeicolo, pesoVeicolo);
 
-        printf("\n\n\t\tPremere INVIO per uscire...");
+        printf(CONSOLE_COLORE_VERDE "\n\n\n\tPremere INVIO per uscire..." CONSOLE_COLORE_BASE);
         getchar();
 
         fflush(stdin);
@@ -94,7 +95,7 @@ bool VerificaCampo(char stringa[], int mode) {
         case 0: {
             // CONTROLLO NOME
             if(strlen(stringa) < 4 || strlen(stringa) > 15) {
-                printf(CONSOLE_COLORE_ROSSO "\n\t\tIl nome inserito non e' valido!" CONSOLE_COLORE_BASE);
+                printf(CONSOLE_COLORE_ROSSO "\n\tIl nome inserito non e' valido!" CONSOLE_COLORE_BASE);
                 Sleep(3000);
                 return false;
             }
@@ -103,7 +104,7 @@ bool VerificaCampo(char stringa[], int mode) {
         case 1: {
             // CONTROLLO PASSWORD
             if(strlen(stringa) < 4 || strlen(stringa) > 10) {
-                printf(CONSOLE_COLORE_ROSSO "\n\t\tLa password inserita non e' valida!" CONSOLE_COLORE_BASE);
+                printf(CONSOLE_COLORE_ROSSO "\n\tLa password inserita non e' valida!" CONSOLE_COLORE_BASE);
                 Sleep(3000);
                 return false;
             }
@@ -124,7 +125,7 @@ bool VerificaCampo(char stringa[], int mode) {
     return false;
 }
 
-// Funzione che scrive sul file dedicato alla memorizzazione degli utenti registrati al programma (Salva nel formato: NOME_UTENTE-ID_UTENTE PASSWORD)
+// StampaPercorsozione che scrive sul file dedicato alla memorizzazione degli utenti registrati al programma (Salva nel formato: NOME_UTENTE-ID_UTENTE PASSWORD)
 void ScriviSuFileRegistrazione(int id, char nome[], char psw[], char nomeVeicolo[], int pesoVeicolo) {
 
     FILE *FileListaUtenti = fopen(FILE_LISTAUTENTI, "a");
@@ -196,16 +197,16 @@ Autista AccessoUtente() {
         GeneraCampoUIVuoto(5);
         MostraLogo("Login Utente");
 
-        printf("\n\t\tPagina di Accesso:\n\n\n");
-        printf("\t\tInserire nome utente: ");
+        printf("\n\tPagina di Accesso:\n\n\n");
+        printf("\tInserire nome utente: ");
         scanf("%s",nomeUtente);
 
-        printf("\t\tInserire password: ");
+        printf("\tInserire password: ");
         scanf("%s",password);
 
         while(fscanf(fileListaUtenti, "%s %s %s %s", nomeUtenteDaFile, passwordDaFile, nomeVeicoloDaFile, pesoVeicoloDaFile) == 4) {
            if ( strcmp(nomeUtente, nomeUtenteDaFile) == 0 && strcmp(password, passwordDaFile) == 0) {
-                printf(CONSOLE_COLORE_VERDE "\n\t\tAccesso effettuato!\n\t\tSto andando nella pagina principale..." CONSOLE_COLORE_BASE);
+                printf(CONSOLE_COLORE_VERDE "\n\tAccesso effettuato!\n\tSto andando nella pagina principale..." CONSOLE_COLORE_BASE);
 
                 strcpy(utente.nomeUtente, nomeUtenteDaFile);
                 strcpy(utente.nomeVeicolo, nomeVeicoloDaFile);
@@ -217,7 +218,7 @@ Autista AccessoUtente() {
                 return utente;
            }
         }
-        printf(CONSOLE_COLORE_ROSSO "\n\t\tErrore:\n\t\tI dati inseriti sono incorretti.\n\t\tRiprova ad inserire i dati o ritorna al menu di accesso." CONSOLE_COLORE_BASE);
+        printf(CONSOLE_COLORE_ROSSO "\n\tErrore:\n\tI dati inseriti sono incorretti.\n\tRiprova ad inserire i dati o ritorna al menu di accesso." CONSOLE_COLORE_BASE);
         rewind(fileListaUtenti);
         Sleep(3000);
     }

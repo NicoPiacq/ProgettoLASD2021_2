@@ -1,11 +1,11 @@
-// FUNZIONI PER HEADER CONFIGURAZIONE
+// StampaPercorsoZIONI PER HEADER CONFIGURAZIONE
 #include "HeaderConfigurazione.h"
 
-// VERIFICA SE IL FILE IN INPUT ESISTE - VIENE INSERITO ANCHE IL NOME DELLA FUNZIONE DA DOVE PROVIENE IL FILE
-void ControllaFile(FILE *fileCheck, char funzione[]) {
+// VERIFICA SE IL FILE IN INPUT ESISTE - VIENE INSERITO ANCHE IL NOME DELLA StampaPercorsoZIONE DA DOVE PROVIENE IL FILE
+void ControllaFile(FILE *fileCheck, char StampaPercorsozione[]) {
 
     if(fileCheck == NULL) {
-        MostraErrore(funzione);
+        MostraErrore(StampaPercorsozione);
     }
 }
 

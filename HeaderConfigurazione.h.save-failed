@@ -9,15 +9,6 @@
 #include "windows.h"
 #include "conio.h"
 
-// DEFINIZIONI COLORI CONSOLE
-#define CONSOLE_COLORE_ROSSO     "\x1b[31m"
-#define CONSOLE_COLORE_VERDE     "\x1b[32m"
-#define CONSOLE_COLORE_GIALLO    "\x1b[33m"
-#define CONSOLE_COLORE_BLU       "\x1b[34m"
-#define CONSOLE_COLORE_MAGENTA   "\x1b[35m"
-#define CONSOLE_COLORE_CIANO     "\x1b[36m"
-#define CONSOLE_COLORE_BASE      "\x1b[0m"
-
 // DEFINIZIONI PERCORSI FILE
 #define FILE_LISTAUTENTI    "Dati/ListaUtenti.txt"
 #define FILE_LISTAPRODOTTI  "Dati/ListaProdotti.txt"

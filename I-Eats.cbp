@@ -22,6 +22,9 @@
 		<Unit filename="FunzioniConfigurazione.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="FunzioniGrafo.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="FunzioniInterfaccia.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -37,7 +40,6 @@
 		<Unit filename="HeaderConfigurazione.h" />
 		<Unit filename="HeaderGestioneDati.h" />
 		<Unit filename="HeaderInterfaccia.h" />
-		<Unit filename="HeaderVeicoli.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

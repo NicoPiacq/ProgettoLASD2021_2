@@ -1,27 +1,27 @@
-// DEFINIZIONI DELLE FUNZIONI RIGUARDANTI L'INTERFACCIA GRAFICA
-#include "HeaderInterfaccia.h"
+// DEFINIZIONI DELLE StampaPercorsoZIONI RIGUARDANTI L'INTERFACCIA GRAFICA
+#include "HeaderConfigurazione.h"
 
 void MostraLogo(char sottotitolo[]) {
 
-    printf(CONSOLE_COLORE_CIANO "\t\t _____            ________        _        _________    ______  \n");
-    printf(CONSOLE_COLORE_CIANO "\t\t|_   _|          |_   __  |      / \\      |  _   _  | .' ____ \\ \n");
-    printf(CONSOLE_COLORE_CIANO "\t\t  | |    ______    | |_ \\_|     / _ \\     |_/ | | \\_| | (___ \\_|\n");
-    printf(CONSOLE_COLORE_BLU "\t\t  | |   |______|   |  _| _     / ___ \\        | |      _.____`. \n");
-    printf(CONSOLE_COLORE_VERDE "\t\t _| |_            _| |__/ |  _/ /   \\ \\_     _| |_    | \\____) |\n");
-    printf(CONSOLE_COLORE_VERDE "\t\t|_____|          |________| |____| |____|   |_____|    \\______.'\n");
-    printf(CONSOLE_COLORE_GIALLO "\t\t%s                                                                \n\n\n" CONSOLE_COLORE_BASE ,sottotitolo);
+    printf(CONSOLE_COLORE_CIANO "\t _____            ________        _        _________    ______  \n");
+    printf(CONSOLE_COLORE_CIANO "\t|_   _|          |_   __  |      / \\      |  _   _  | .' ____ \\ \n");
+    printf(CONSOLE_COLORE_CIANO "\t  | |    ______    | |_ \\_|     / _ \\     |_/ | | \\_| | (___ \\_|\n");
+    printf(CONSOLE_COLORE_BLU "\t  | |   |______|   |  _| _     / ___ \\        | |      _.____`. \n");
+    printf(CONSOLE_COLORE_VERDE "\t _| |_            _| |__/ |  _/ /   \\ \\_     _| |_    | \\____) |\n");
+    printf(CONSOLE_COLORE_VERDE "\t|_____|          |________| |____| |____|   |_____|    \\______.'\n");
+    printf(CONSOLE_COLORE_GIALLO "\t%s                                                                \n\n" CONSOLE_COLORE_BASE ,sottotitolo);
 
 }
 
 void MostraLogoNoColore(char sottotitolo[]) {
 
-    printf("\t\t _____            ________        _        _________    ______  \n");
-    printf("\t\t|_   _|          |_   __  |      / \\      |  _   _  | .' ____ \\ \n");
-    printf("\t\t  | |    ______    | |_ \\_|     / _ \\     |_/ | | \\_| | (___ \\_|\n");
-    printf("\t\t  | |   |______|   |  _| _     / ___ \\        | |      _.____`. \n");
-    printf("\t\t _| |_            _| |__/ |  _/ /   \\ \\_     _| |_    | \\____) |\n");
-    printf("\t\t|_____|          |________| |____| |____|   |_____|    \\______.'\n");
-    printf(CONSOLE_COLORE_GIALLO "\t\t%s                                                                \n\n\n" CONSOLE_COLORE_BASE ,sottotitolo);
+    printf("\t _____            ________        _        _________    ______  \n");
+    printf("\t|_   _|          |_   __  |      / \\      |  _   _  | .' ____ \\ \n");
+    printf("\t  | |    ______    | |_ \\_|     / _ \\     |_/ | | \\_| | (___ \\_|\n");
+    printf("\t  | |   |______|   |  _| _     / ___ \\        | |      _.____`. \n");
+    printf("\t _| |_            _| |__/ |  _/ /   \\ \\_     _| |_    | \\____) |\n");
+    printf("\t|_____|          |________| |____| |____|   |_____|    \\______.'\n");
+    printf(CONSOLE_COLORE_GIALLO "\t%s                                                                \n\n" CONSOLE_COLORE_BASE ,sottotitolo);
 
 }
 
@@ -41,8 +41,8 @@ void MostraErrore(char errorCode[]) {
     GeneraCampoUIVuoto(5);
     MostraLogoNoColore("");
 
-    printf(CONSOLE_COLORE_ROSSO "\n\t\tErrore grave nel software.\n\t\tVerifica che tutti i file nella cartella 'Dati' siano presenti e riavvia il software.\n\n\t\tErrore in: %s\n\n" CONSOLE_COLORE_BASE, errorCode);
-    printf(CONSOLE_COLORE_GIALLO "\t\tPremi INVIO per chiudere..." CONSOLE_COLORE_BASE);
+    printf(CONSOLE_COLORE_ROSSO "\n\tErrore grave nel software.\n\tSi e' verificato un errore e non e' possibile proseguire.\n\n\tErrore in: %s\n\n" CONSOLE_COLORE_BASE, errorCode);
+    printf(CONSOLE_COLORE_GIALLO "\tPremi INVIO per chiudere..." CONSOLE_COLORE_BASE);
 
     fflush(stdin);
 
@@ -54,5 +54,37 @@ void MostraErrore(char errorCode[]) {
 void ImpostaTitoloConsole(char stringa[]) {
 
     SetConsoleTitle(stringa);
+
+}
+
+void MostraBarraPeso(float pesoCarico, float pesoMassimoPonti) {
+
+    printf(CONSOLE_COLORE_VERDE "\n\t   0%%" CONSOLE_COLORE_BASE);
+    printf(CONSOLE_COLORE_GIALLO " \t\t      50%%" CONSOLE_COLORE_BASE);
+    printf(CONSOLE_COLORE_ROSSO "\t\t\t100%%\n\t   " CONSOLE_COLORE_BASE);
+
+    int i = 0;
+    float pesoInPercentuale;
+
+    pesoInPercentuale = (pesoCarico / pesoMassimoPonti) * 50;
+
+    for(i = 0; i < pesoInPercentuale; i++) {
+
+        if(pesoInPercentuale > 50) {
+            pesoInPercentuale = 50;
+            i = 0;
+            continue;
+        }
+
+        if(i >= 40) {
+            printf(CONSOLE_COLORE_ROSSO "%c" CONSOLE_COLORE_BASE, 219);
+        }
+        else if(i >= 20) {
+            printf(CONSOLE_COLORE_GIALLO "%c" CONSOLE_COLORE_BASE, 219);
+        }
+        else {
+            printf(CONSOLE_COLORE_VERDE "%c" CONSOLE_COLORE_BASE, 219);
+        }
+    }
 
 }
