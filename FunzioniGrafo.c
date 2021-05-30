@@ -42,6 +42,20 @@ void AggiungiPonte(Isole *grafo, int sorgente, int destinazione, int peso, char 
   grafo->adiacente[destinazione] = newNode;
 }
 
+/*void AggiungiPonte(Isole *grafo, int sorgente, int destinazione, int peso, char nomeIsolaSorgente[], char nomeIsolaDestinazione[]) {
+  // Add edge from src to dest
+  Ponte *newNode = createNode(sorgente, nomeIsolaSorgente);
+  newNode->next = grafo->adiacente[destinazione];
+  newNode->portataMassima = peso;
+  grafo->adiacente[sorgente] = newNode;
+
+  // Add edge from dest to src
+  newNode = createNode(destinazione, nomeIsolaDestinazione);
+  newNode->next = grafo->adiacente[sorgente];
+  newNode->portataMassima = peso;
+  grafo->adiacente[destinazione] = newNode;
+}*/
+
 int grafoVuoto(Isole *grafo) {
 
     return (grafo == NULL);
@@ -123,47 +137,54 @@ void stampaGrafo(Isole *grafo) {
 
 void StampaIsolePartenze(Isole *mappa, int *partenzaIsola, int *destinazioneIsola) {
 
-    system("cls");
+    do {
 
-    GeneraCampoUIVuoto(3);
-    MostraLogo("Scegli il percorso");
+        system("cls");
 
-    printf(CONSOLE_COLORE_CIANO "\tCodice Isola \tNome Isola\n\n" CONSOLE_COLORE_BASE);
+        GeneraCampoUIVuoto(3);
+        MostraLogo("Scegli il percorso");
 
-    printf("\t\t1 \tCapri\n");
-    printf("\t\t2 \tProcida\n");
-    printf("\t\t3 \tIschia\n");
-    printf("\t\t4 \tStromboli\n");
-    printf("\t\t5 \tSicilia\n");
-    printf("\t\t6 \tVulcano\n");
-    printf("\t\t7 \tCorsica\n");
-    printf("\t\t8 \tSardegna\n");
-    printf("\t\t9 \tNisida\n");
-    printf("\t\t10 \tElba\n");
+        printf(CONSOLE_COLORE_CIANO "\tCodice Isola \tNome Isola\n\n" CONSOLE_COLORE_BASE);
 
-    printf("\n\n\tPremi 0 per uscire.");
-    printf("\n\tInserisci il codice dell'isola di partenza: ");
-    scanf("%d",partenzaIsola);
+        printf("\t\t1 \tCapri\n");
+        printf("\t\t2 \tProcida\n");
+        printf("\t\t3 \tIschia\n");
+        printf("\t\t4 \tStromboli\n");
+        printf("\t\t5 \tSicilia\n");
+        printf("\t\t6 \tVulcano\n");
+        printf("\t\t7 \tCorsica\n");
+        printf("\t\t8 \tSardegna\n");
+        printf("\t\t9 \tNisida\n");
+        printf("\t\t10 \tElba\n");
 
-    *partenzaIsola = *partenzaIsola - 1;
+        printf("\n\n\tPremi 0 per uscire.");
+        printf("\n\tInserisci il codice dell'isola di partenza: ");
+        scanf("%d",partenzaIsola);
 
-    if(*partenzaIsola == -1) {
-        return;
-    }
+        *partenzaIsola = *partenzaIsola - 1;
 
-    printf("\n\tInserisci il codice dell'isola di destinazione: ");
-    scanf("%d",destinazioneIsola);
+        if(*partenzaIsola == -1) {
+            return;
+        }
 
-    *destinazioneIsola = *destinazioneIsola - 1;
+        printf("\tInserisci il codice dell'isola di destinazione: ");
+        scanf("%d",destinazioneIsola);
 
-    if(*destinazioneIsola == -1) {
-        return;
-    }
+        *destinazioneIsola = *destinazioneIsola - 1;
 
-    if(*partenzaIsola == *destinazioneIsola) {
-        printf(CONSOLE_COLORE_ROSSO "\n\tPartenza e destinazione coincidono!\n\tScegli nuovamente il percorso!");
-        Sleep(3000);
-    }
+        if(*destinazioneIsola == -1) {
+            return;
+        }
+
+        if(*partenzaIsola == *destinazioneIsola) {
+            printf(CONSOLE_COLORE_ROSSO "\n\tPartenza e destinazione coincidono!\n\tScegli nuovamente il percorso!");
+            Sleep(3000);
+        }
+
+        if(*partenzaIsola > -1 || *destinazioneIsola > -1)
+            return;
+
+    } while(1);
 }
 
 void CostruisciPonti(Isole *grafoIsole) {
@@ -280,7 +301,26 @@ void BFS(Isole *g) {
 
 }
 
-int ScegliMinore(int *d, int *s, int n) {
+/* int ScegliMinore(int *d, int *s, int n) {
+    int i, minpos, min;
+    min = INFINITO;
+    minpos = -1;
+
+    for(i=0; i < n; i++) {
+        printf("SCEGLI MINORE PRE-IF: d[%d] = %d\n",i,d[i]);
+        if(d[i] < min && !s[i]) {
+            printf("SCEGLI MINORE POST-IF: d[%d] = %d\n",i,d[i]);
+            min=d[i];
+            minpos=i;
+        }
+    }
+
+    printf("\nRITORNO MINPOS: %d\n\n",minpos);
+
+    return minpos;
+} */
+
+int ScegliMinore(int *d, int *s, int n, int pesoCamion) {
     int i, minpos, min;
     min = INFINITO;
     minpos = -1;
@@ -291,10 +331,75 @@ int ScegliMinore(int *d, int *s, int n) {
             minpos=i;
         }
     }
+
     return minpos;
 }
 
-int CalcoloPercorsoMinimo(int v, int *d, int *path, Isole *grafoIsola) {
+int CalcoloPercorsoMinimo(int v, int *d, int *path, Isole *grafoIsola, int pesoCamion) {
+     int i, k;
+     Ponte *p;
+     p = grafoIsola->adiacente[v];
+     int *s;
+
+     if( v < 0 || v > grafoIsola->numeroIsole-1) {
+         return -1;
+     }
+
+     s = (int*) malloc(sizeof(int) * grafoIsola->numeroIsole);
+
+     for(i=0; i < grafoIsola->numeroIsole; i++) {
+         s[i]=0;
+         path[i] = -1;
+         d[i] = INFINITO;
+     }
+
+     while(p) {
+
+            if(p->portataMassima > pesoCamion) {
+                d[p->key] = p->portataMassima;
+
+                if(p->key != v && d[p->key] > pesoCamion) {
+                    path[p->key] = v;
+                }
+
+            }
+
+         p = p->next;
+    }
+
+     s[v]=1;
+     d[v]=0;
+
+     for(i=0; i < grafoIsola->numeroIsole; i++) {
+
+         k = ScegliMinore(d, s, grafoIsola->numeroIsole, pesoCamion);
+
+         if(k == -1) {
+             continue;
+         }
+
+         p = grafoIsola->adiacente[k];
+
+         if(p == NULL) {
+             continue;
+         }
+
+         s[k] = 1;
+
+         while(p) {
+                if(p->portataMassima > pesoCamion) {
+                    d[p->key] = p->portataMassima;
+
+                    if(!s[p->key])
+                        path[p->key] = k;
+                }
+                p = p->next;
+         }
+     }
+     return 0;
+}
+
+/* int CalcoloPercorsoMinimo(int v, int *d, int *path, Isole *grafoIsola) {
      int i, k;
      Ponte *p;
      p = grafoIsola->adiacente[v];
@@ -351,163 +456,138 @@ int CalcoloPercorsoMinimo(int v, int *d, int *path, Isole *grafoIsola) {
          }
      }
      return 0;
-}
-
-void AdattaPontiConPeso(Isole *grafoAux, int peso) {
-
-    if(peso <= 10000) {
-        AggiungiPonte(grafoAux, 3, 4, 10000, "Stromboli", "Sicilia");
-    }
-
-    if(peso <= 15000) {
-        AggiungiPonte(grafoAux, 0, 2, 15000, "Capri", "Ischia");
-    }
-
-    if(peso <= 25000) {
-       AggiungiPonte(grafoAux, 2, 7, 25000, "Ischia", "Sardegna");
-       AggiungiPonte(grafoAux, 0, 1, 25000, "Capri", "Procida");
-    }
-
-    if(peso <= 30000) {
-        AggiungiPonte(grafoAux, 1, 3, 30000, "Procida", "Stromboli");
-        AggiungiPonte(grafoAux, 4, 5, 30000, "Sicilia", "Vulcano");
-        AggiungiPonte(grafoAux, 2, 3, 30000, "Ischia", "Stromboli");
-        AggiungiPonte(grafoAux, 6, 7, 30000, "Corsica", "Sardegna");
-    }
-
-    if(peso <= 35000) {
-        AggiungiPonte(grafoAux, 8, 9, 35000, "Nisida", "Elba");
-    }
-
-    if(peso <= 40000) {
-        AggiungiPonte(grafoAux, 0, 8, 40000, "Capri", "Nisida");
-    }
-
-    if(peso <= 45000) {
-        AggiungiPonte(grafoAux, 5, 6, 45000, "Vulcano", "Corsica");
-    }
-
-    if(peso <= 50000) {
-      AggiungiPonte(grafoAux, 1, 9, 50000, "Procida", "Elba");
-    }
-
-}
+} */
 
 void StampaPercorso(Isole *grafoIsola, int partenza, int destinazione, int carico, TestaProdotto *Testa) {
 
     system("cls");
     MostraLogo("Consegna prodotti");
 
-    Isole *grafoAux = creaGrafo(10);
-    AdattaPontiConPeso(grafoAux, carico);
-
-    BFS(grafoIsola);
-
-    system("pause");
+    //BFS(grafoIsola);
 
     int d[grafoIsola->numeroIsole];
     int path[grafoIsola->numeroIsole];
 
-    CalcoloPercorsoMinimo(partenza, d, path, grafoAux);
+    CalcoloPercorsoMinimo(partenza, d, path, grafoIsola, carico);
 
-    printf("\tIl percorso effettuato e': ");
+    printf("\tIl percorso effettuato e': \n\n");
     if(path[destinazione] == -1) {
-        printf(CONSOLE_COLORE_ROSSO "Nessun percorso disponibile.\n" CONSOLE_COLORE_BASE);
-        return;
+        printf(CONSOLE_COLORE_ROSSO "\n\n\tNessun percorso disponibile.\n\n" CONSOLE_COLORE_BASE);
     }
+    else {
+        printf(CONSOLE_COLORE_VERDE "\tDESTINAZIONE:\t" CONSOLE_COLORE_BASE);
+        while (path[destinazione] != -1) {
+            switch(destinazione) {
+                case 0: {
+                    printf("Capri");
+                    printf("\n\t\t\t ^\n\t\t\t |\n\t\t\t |");
+                    break;
+                }
+                case 1: {
+                    printf("Procida");
+                    printf("\n\t\t\t ^\n\t\t\t |\n\t\t\t |");
+                    break;
+                }
+                case 2: {
+                    printf("Ischia");
+                    printf("\n\t\t\t ^\n\t\t\t |\n\t\t\t |");
+                    break;
+                }
+                case 3: {
+                    printf("Stromboli");
+                    printf("\n\t\t\t ^\n\t\t\t |\n\t\t\t |");
+                    break;
+                }
+                case 4: {
+                    printf("Sicilia");
+                    printf("\n\t\t\t ^\n\t\t\t |\n\t\t\t |");
+                    break;
+                }
+                case 5: {
+                    printf("Vulcano");
+                    printf("\n\t\t\t ^\n\t\t\t |\n\t\t\t |");
+                    break;
+                }
+                case 6: {
+                    printf("Corsica");
+                    printf("\n\t\t\t ^\n\t\t\t |\n\t\t\t |");
+                    break;
+                }
+                case 7: {
+                    printf("Sardegna");
+                    printf("\n\t\t\t ^\n\t\t\t |\n\t\t\t |");
+                    break;
+                }
+                case 8: {
+                    printf("Nisida");
+                    printf("\n\t\t\t ^\n\t\t\t |\n\t\t\t |");
+                    break;
+                }
+                case 9: {
+                    printf("Elba");
+                    printf("\n\t\t\t ^\n\t\t\t |\n\t\t\t |");
+                    break;
+                }
+            }
 
-    while (path[destinazione] != -1) {
-        //printf("%d <--- ",destinazione);
+            Sleep(500);
+            destinazione = path[destinazione];
+        }
 
-        switch(destinazione) {
+        printf(CONSOLE_COLORE_CIANO "\n\tPARTENZA:\t" CONSOLE_COLORE_BASE);
+
+        switch(partenza) {
             case 0: {
-                printf("Capri <--- ");
+                printf("Capri\n\n");
                 break;
             }
             case 1: {
-                printf("Procida <--- ");
+                printf("Procida\n\n");
                 break;
-            }
+                }
             case 2: {
-                printf("Ischia <--- ");
+                printf("Ischia\n\n");
                 break;
-            }
+                }
             case 3: {
-                printf("Stromboli <--- ");
+                printf("Stromboli\n\n");
                 break;
-            }
+                }
             case 4: {
-                printf("Sicilia <--- ");
+                printf("Sicilia\n\n");
                 break;
             }
             case 5: {
-                printf("Vulcano <--- ");
+                printf("Vulcano\n\n");
                 break;
-            }
+                }
             case 6: {
-                printf("Corsica <--- ");
+                printf("Corsica\n\n");
                 break;
-            }
+                }
             case 7: {
-                printf("Sardegna <--- ");
+                printf("Sardegna\n\n");
                 break;
             }
             case 8: {
-                printf("Nisida <--- ");
+                printf("Nisida\n\n");
                 break;
             }
             case 9: {
-                printf("Elba <--- ");
+                printf("Elba\n\n");
                 break;
             }
         }
-        destinazione = path[destinazione];
-    }
 
-    switch(partenza) {
-        case 0: {
-            printf("Capri\n\n");
-            break;
-        }
-        case 1: {
-            printf("Procida\n\n");
-            break;
-            }
-        case 2: {
-            printf("Ischia\n\n");
-            break;
-            }
-        case 3: {
-            printf("Stromboli\n\n");
-            break;
-            }
-        case 4: {
-            printf("Sicilia\n\n");
-            break;
-            }
-        case 5: {
-            printf("Vulcano\n\n");
-            break;
-            }
-        case 6: {
-            printf("Corsica\n\n");
-            break;
-            }
-        case 7: {
-            printf("Sardegna\n\n");
-            break;
-        }
-        case 8: {
-            printf("Nisida\n\n");
-            break;
-        }
-        case 9: {
-            printf("Elba\n\n");
-            break;
-        }
+        printf(CONSOLE_COLORE_BASE);
     }
 
     SvuotaLista(Testa->next);
 
-    system("pause");
+    printf(CONSOLE_COLORE_VERDE "\n\tConsegnato!\n\tTutti i prodotti sono stati consegnati correttamente!\n\tIl carico ora verrà svuotato.\n\n\n" CONSOLE_COLORE_BASE);
+    printf("\tPremi INVIO per uscire...");
+
+    fflush(stdin);
+    getchar();
+    fflush(stdin);
 }

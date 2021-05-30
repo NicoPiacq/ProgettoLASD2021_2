@@ -32,6 +32,7 @@ typedef struct arco {
     char nomeIsolaAttuale[ISOLA_NOME_DIM];
     int key;
     int portataMassima;
+    int numeroPonti;
     struct arco *next;
 
 } Ponte;
@@ -86,6 +87,8 @@ Autista AccessoUtente();
 // StampaPercorsozione per mostrare il menu principale
 void MostraMenuPrincipale(Autista utente);
 
+// Ritorna il nome dell'isola associato all'ID in input
+char *EstraiNomeIsolaDaID(int);
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // PROTOTIPI StampaPercorsoZIONI GESTIONE GRAFI
@@ -131,9 +134,9 @@ void BFS(Isole *g);
 
 // PROTOTIPI StampaPercorsoZIONI PER CALCOLO PERCORSO MINIMO
 
-int ScegliMinore(int *d, int *s, int n);
+int ScegliMinore(int *d, int *s, int n, int);
 
-int CalcoloPercorsoMinimo(int v, int *d, int *path, Isole *grafoIsola);
+int CalcoloPercorsoMinimo(int v, int *d, int *path, Isole *grafoIsola, int);
 
 void StampaPercorso(Isole *grafoIsola, int, int, int, TestaProdotto *Testa);
 

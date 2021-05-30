@@ -150,8 +150,20 @@ void StampaListaProdottiScelti(TestaProdotto *Testa) {
 
     NodoProdotto *Ricerca = Testa->next;
 
+    GeneraCampoUIVuoto(2);
     MostraLogo("Gestisci carico veicolo");
-    printf(CONSOLE_COLORE_CIANO "\tCodice Prodotto \tNome Prodotto  \t    Peso Prodotto (Kg)  \t    Quantita'\n\n" CONSOLE_COLORE_BASE);
+    printf(CONSOLE_COLORE_CIANO "\tCodice Prodotto\t  Nome Prodotto  \tPeso Prodotto (Kg)  \tQuantita'\n\n" CONSOLE_COLORE_BASE);
+
+    if(Ricerca == NULL) {
+        printf(CONSOLE_COLORE_ROSSO "\n\n\t\tNon hai scelto nessun prodotto da consegnare!\n\t\tRitorna al menu principale e scegli l'opzione 1.\n" CONSOLE_COLORE_BASE);
+
+        fflush(stdin);
+        printf("\n\n\tPremi INVIO per uscire...");
+        getchar();
+        fflush(stdin);
+
+        return;
+    }
 
     while(Ricerca != NULL && Ricerca->next != NULL) {
         printf("\t\t%d \t\t   %s \t\t%d \t\t%d\n", Ricerca->idProdotto, Ricerca->nomeProdotto, Ricerca->pesoSpecifico, Ricerca->quantita);
